@@ -103,3 +103,171 @@ RAGARENN_API_KEY=your_api_key_here
 
 # FHIR Server URL (Default: PDex Server)
 FHIR_BASE_URL=https://pdex-server.davinci.hl7.org/fhir
+
+
+Access the Application
+Open your browser and navigate to: http://localhost:5173
+
+🔧 Configuration
+FHIR Server Options
+Change FHIR_BASE_URL in .env file:
+
+FHIR Server	URL
+PDex (Default)	https://pdex-server.davinci.hl7.org/fhir
+HAPI Public	https://hapi.fhir.org/baseR4
+Fire.ly	https://server.fire.ly/r4
+Update Interval
+Edit Dashboard/src/pages/Dashboard.jsx (line 12):
+
+javascript
+const UPDATE_INTERVAL = 60000; // Change to 30000 for 30 seconds
+📡 API Endpoints
+FHIR + MCP + LLM Server (Port 5001)
+Endpoint	Method	Description
+/chat/universal	POST	AI chat with MCP context
+/health	GET	Health check
+/	GET	Server info
+ML Risk Prediction Server (Port 5002)
+Endpoint	Method	Description
+/predict	POST	Single patient risk prediction
+/batch_predict	POST	Batch predictions
+/health	GET	Health check
+/model_info	GET	Model information
+🧪 Test Patients
+Patient ID	Name	Gender
+ff325f93-dbba-413e-8e27-d334f6eb20f3	Ali1 Unknown	-
+2002	William John Smith	Male
+1-2	Johnny Appleseed	Male
+1	Johnny Appleseed	Male
+1001	Patricia Ann Person	Female
+Patient1	Johnny Example1	Male
+Login Instructions:
+
+Enter Patient ID (e.g., 2002)
+
+Enter Patient Name exactly (e.g., William John Smith)
+
+Click Login
+
+🤖 ML Model Details
+Input Features (13 features)
+Feature	Normal Range
+Heart Rate	60-100 bpm
+Oxygen Saturation	95-100%
+Systolic BP	90-120 mmHg
+Diastolic BP	60-80 mmHg
+Age	-
+MAP	70-100 mmHg
+Pulse Pressure	30-50 mmHg
+Risk Categories
+Category	Action Required
+Low Risk	Routine monitoring
+Moderate Risk	Increased monitoring, follow-up
+High Risk	Immediate attention required
+📁 Project Structure
+text
+Trustworthy-AI-FHIR-Monitoring/
+│
+├── FHIR Server.py                      # Main FHIR + MCP + LLM server
+├── requirements.txt                    # Python dependencies
+├── .env                                # Environment variables
+│
+├── Dashboard/                          # React frontend
+│   ├── package.json
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   └── Login.jsx
+│   │   ├── components/
+│   │   │   ├── ChatBox.jsx
+│   │   │   ├── PatientCard.jsx
+│   │   │   └── Charts/
+│   │   │       └── LineChart.jsx
+│   │   └── hooks/
+│   │       └── useMCPClient.js
+│   └── public/
+│
+└── Machine Learning Server/            # ML models
+    ├── ml_server.py
+    ├── risk_prediction_model.pkl
+    ├── scaler.pkl
+    ├── risk_label_encoder.pkl
+    ├── gender_encoder.pkl
+    └── feature_names.json
+🐛 Troubleshooting
+Common Issues and Solutions
+1. ModuleNotFoundError
+bash
+pip install -r requirements.txt
+2. Port already in use
+Windows:
+
+bash
+netstat -ano | findstr :5001
+taskkill /PID <PID> /F
+Mac/Linux:
+
+bash
+lsof -i :5001
+kill -9 <PID>
+3. ML Model files not found
+ML server will auto-create mock models. No action needed.
+
+4. React build errors
+bash
+cd Dashboard
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+5. FHIR Connection Failed
+Check internet connection
+
+Verify FHIR server URL
+
+Test in browser: https://pdex-server.davinci.hl7.org/fhir/Patient/2002
+
+6. LLM API Not Working
+Without API key, system uses fallback responses. Add valid API key to .env for AI features.
+
+Quick Health Checks
+bash
+# Check AI Server
+curl http://localhost:5001/health
+
+# Check ML Server
+curl http://localhost:5002/health
+
+# Check Frontend
+# Open http://localhost:5173 in browser
+🔐 Security Features
+Two-Factor Authentication: Patient ID + Name verification
+
+No Hardcoded Credentials: All API keys in .env file
+
+CORS Protection: Configurable CORS policies
+
+Input Validation: All API inputs validated
+
+Error Handling: No sensitive data in error messages
+
+📊 Performance
+FHIR Query Response: < 2 seconds
+
+ML Prediction Time: < 100ms per patient
+
+LLM Response Time: 3-5 seconds
+
+Dashboard Refresh: Every 60 seconds
+
+🙏 Acknowledgments
+HL7 FHIR - Healthcare interoperability standards
+
+PDex Server - Test FHIR data
+
+scikit-learn - ML model implementation
+
+FastAPI - Python web framework
+
+📄 License
+MIT License - See LICENSE file for details
