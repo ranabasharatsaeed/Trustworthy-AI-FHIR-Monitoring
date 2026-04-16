@@ -1,0 +1,72 @@
+{
+  "features": [
+    "Heart Rate",
+    "Oxygen Saturation",
+    "Systolic Blood Pressure",
+    "Diastolic Blood Pressure",
+    "Age",
+    "MAP",
+    "Pulse_Pressure",
+    "Age_Group_Num",
+    "Low_O2_Risk",
+    "Heart_Rate_Abnormal",
+    "Hypertension_Risk",
+    "Gender_Encoded",
+    "Timestamp_Normalized"
+  ],
+  "risk_categories": [
+    "High Risk",
+    "Low Risk",
+    "Moderate Risk"
+  ],
+  "model_type": "Random Forest",
+  "training_date": "2026-03-30T22:17:08.777100",
+  "accuracy": 1.0,
+  "cv_score_mean": 1.0,
+  "cv_score_std": 0.0,
+  "training_samples": 160016,
+  "test_samples": 40004,
+  "total_samples": 200020,
+  "feature_importance": [
+    {
+      "feature": "Age",
+      "importance": 0.24764608948015576
+    },
+    {
+      "feature": "Age_Group_Num",
+      "importance": 0.16949490190316965
+    },
+    {
+      "feature": "Diastolic Blood Pressure",
+      "importance": 0.1604388955037353
+    },
+    {
+      "feature": "MAP",
+      "importance": 0.13746543187312277
+    },
+    {
+      "feature": "Gender_Encoded",
+      "importance": 0.1240461164158903
+    },
+    {
+      "feature": "Systolic Blood Pressure",
+      "importance": 0.10518013466266492
+    },
+    {
+      "feature": "Pulse_Pressure",
+      "importance": 0.05409113119506976
+    },
+    {
+      "feature": "Oxygen Saturation",
+      "importance": 0.000640019520071222
+    },
+    {
+      "feature": "Timestamp_Normalized",
+      "importance": 0.0005563279044992169
+    },
+    {
+      "feature": "Heart Rate",
+      "importance": 0.00044095154162115724
+    }
+  ]
+}
