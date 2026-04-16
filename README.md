@@ -85,8 +85,8 @@ Extract the project ZIP file to a folder on your computer.
 
 #### Create Virtual Environment
 
-**Windows:**
-```bash
+##Windows:##
+bash
 python -m venv venv
 venv\Scripts\activate
 
@@ -98,17 +98,18 @@ cd Dashboard
 npm install
 
 
-# LLM API Configuration (Optional - without it, system uses fallback responses)
+
+### LLM API Configuration (Optional - without it, system uses fallback responses)
 RAGARENN_API_KEY=your_api_key_here
 
 # FHIR Server URL (Default: PDex Server)
 FHIR_BASE_URL=https://pdex-server.davinci.hl7.org/fhir
 
 
-Access the Application
+## Access the Application
 Open your browser and navigate to: http://localhost:5173
 
-🔧 Configuration
+ Configuration
 FHIR Server Options
 Change FHIR_BASE_URL in .env file:
 
@@ -117,7 +118,7 @@ PDex (Default)	https://pdex-server.davinci.hl7.org/fhir
 HAPI Public	https://hapi.fhir.org/baseR4
 Fire.ly	https://server.fire.ly/r4
 Update Interval
-Edit Dashboard/src/pages/Dashboard.jsx (line 12):
+Edit Dashboard/src/pages/Dashboard.jsx (line 12)
 
 javascript
 const UPDATE_INTERVAL = 60000; // Change to 30000 for 30 seconds
@@ -133,7 +134,8 @@ Endpoint	Method	Description
 /batch_predict	POST	Batch predictions
 /health	GET	Health check
 /model_info	GET	Model information
-🧪 Test Patients
+
+## 🧪 Test Patients
 Patient ID	Name	Gender
 ff325f93-dbba-413e-8e27-d334f6eb20f3	Ali1 Unknown	-
 2002	William John Smith	Male
@@ -149,7 +151,7 @@ Enter Patient Name exactly (e.g., William John Smith)
 
 Click Login
 
-🤖 ML Model Details
+## 🤖 ML Model Details
 Input Features (13 features)
 Feature	Normal Range
 Heart Rate	60-100 bpm
@@ -164,7 +166,8 @@ Category	Action Required
 Low Risk	Routine monitoring
 Moderate Risk	Increased monitoring, follow-up
 High Risk	Immediate attention required
-📁 Project Structure
+
+## 📁 Project Structure
 text
 Trustworthy-AI-FHIR-Monitoring/
 │
@@ -195,7 +198,8 @@ Trustworthy-AI-FHIR-Monitoring/
     ├── risk_label_encoder.pkl
     ├── gender_encoder.pkl
     └── feature_names.json
-🐛 Troubleshooting
+
+## 🐛 Troubleshooting
 Common Issues and Solutions
 1. ModuleNotFoundError
 bash
